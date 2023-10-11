@@ -13,5 +13,8 @@ ADD CONSTRAINT countrylanguage_pk PRIMARY KEY (countrycode, language)
 
 -- 4. Crear check en percentage, 
 -- Para que no permita negativos ni números superiores a 100
-
+ALTER TABLE countrylanguage 
+ADD CONSTRAINT countrylanguage_check CHECK (
+	(percentage >= 0) AND (percentage <= 100)
+)
 
