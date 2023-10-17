@@ -27,6 +27,9 @@ services:
       - 5050:80
     volumes: 
       - ./pgadmin-data:/var/lib/pgadmin 
+      - ./pgadmin-data:/certs/server.cert
+      - ./pgadmin-data:/certs/server.key
+      - ./pgadmin-data:/pgadmin4/servers.json
       - ./pgadmin-data/sessions:/var/lib/pgadmin/sessions 
       - ./pgadmin-data/storage:/var/lib/pgadmin/storage
   
