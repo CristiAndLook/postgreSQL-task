@@ -1,0 +1,20 @@
+-- 1. Crear una llave primaria en city (id)
+ALTER TABLE city 
+ADD CONSTRAINT pk_id PRIMARY KEY (id)
+
+-- 2. Crear un check en population, para que no soporte negativos
+ALTER TABLE city
+ADD CONSTRAINT city_check_population CHECK (population >= 0);
+
+-- 3. Crear una llave primaria compuesta en "countrylanguage"
+-- los campos a usar como llave compuesta son countrycode y language
+ALTER TABLE countrylanguage 
+ADD CONSTRAINT countrylanguage_pk PRIMARY KEY (countrycode, language)
+
+-- 4. Crear check en percentage, 
+-- Para que no permita negativos ni números superiores a 100
+ALTER TABLE countrylanguage 
+ADD CONSTRAINT countrylanguage_check CHECK (
+	(percentage >= 0) AND (percentage <= 100)
+)
+
