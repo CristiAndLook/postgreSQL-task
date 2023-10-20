@@ -153,7 +153,24 @@ GROUP BY comment_id, user_id, content
 ORDER BY comment_id ASC
 LIMIT 5
 
+/*Create a function*/
+CREATE OR REPLACE FUNCTION get_comments( id INTEGER )
+RETURNS JSON
+AS
+$$
+DECLARE 
+    replies JSON;
+BEGIN
+   SELECT json_agg(json_build_object('user', user_id, 'comment', content)) INTO replies
+    FROM comments
+    WHERE comment_parent_id = id;
+    RETURN replies;
+END;
+$$
+LANGUAGE plpgsql;
 
+/*Call the function*/
+SELECT get_comments(1);
 
 
 
