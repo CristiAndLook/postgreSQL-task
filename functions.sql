@@ -21,3 +21,4 @@ $$
 LANGUAGE plpgsql;
 
 SELECT hello(name) FROM users;
+
